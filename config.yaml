@@ -1,0 +1,85 @@
+# Codon Usage Analyzer Configuration
+
+# Input data configuration
+input:
+  # Input type: fastq, fasta, cds, or codonw
+  type: "fasta"
+  
+  # For FASTQ input
+  # fastq_files: "data/{sample}_R{read}.fastq.gz"
+  # samples: ["sample1", "sample2"]
+  # reads: [1, 2]
+  # reference: "reference/genome.fa"
+  # gtf: "reference/annotation.gtf"
+  
+  # For FASTA input  
+  files: "data/transcripts.fasta"
+  
+  # For CDS input
+  # cds_files: "data/cds_sequences.fasta"
+  
+  # For CodonW input
+  # codonw_files: "data/codonw_output.blk"
+
+# Genetic code configuration
+genetic_code:
+  # Use standard genetic code table (1-25)
+  table: 1
+  
+  # For custom genetic code
+  # custom_table:
+  #   TTT: "F"
+  #   TTC: "F"
+  #   TTA: "L"
+  #   TTG: "L"
+  #   ...
+
+# Analysis parameters
+analysis:
+  # Basic codon usage metrics
+  calculate_rscu: true
+  calculate_cai: true
+  calculate_enc: true
+  calculate_cbi: true
+  calculate_fop: true
+  
+  # Advanced analysis
+  codon_pair_analysis: true
+  correlation_analysis: true
+  phylogenetic_analysis: false
+  
+  # tAI calculation
+  calculate_tai: true
+  trna_data: "reference/trna_data/human_trna_counts.tsv"
+  
+  # Visualization
+  generate_heatmaps: true
+  generate_correlation_plots: true
+  generate_pca: true
+  plot_formats: ["pdf", "png", "svg"]
+
+# Output configuration
+output:
+  base_dir: "results"
+  plots_dir: "results/plots"
+  tables_dir: "results/tables"
+  reports_dir: "results/reports"
+
+# Resource configuration
+resources:
+  threads: 16
+  memory: "32G"
+  parallel_jobs: 4
+
+# Quality control parameters
+quality_control:
+  min_read_length: 100
+  min_quality_score: 20
+  min_codon_count: 5
+  max_ambiguous_bases: 0.1
+
+# Logging configuration
+logging:
+  level: "INFO"
+  log_dir: "logs"
+  log_file: "codon_usage_analysis.log"

@@ -1,0 +1,45 @@
+# Test configuration for Codon Usage Analyzer
+
+# Input data configuration
+input:
+  type: "fasta"
+  files: "test_data/transcripts.fasta"
+
+# Genetic code configuration
+genetic_code:
+  table: 1  # Standard genetic code
+
+# Analysis parameters (simplified for testing)
+analysis:
+  calculate_rscu: true
+  calculate_cai: false
+  calculate_enc: false
+  calculate_cbi: false
+  calculate_fop: false
+  codon_pair_analysis: false
+  correlation_analysis: false
+  calculate_tai: false
+  generate_heatmaps: true
+  generate_correlation_plots: false
+  generate_pca: false
+  plot_formats: ["pdf"]
+
+# Output configuration
+output:
+  base_dir: "test_results"
+  plots_dir: "test_results/plots"
+  tables_dir: "test_results/tables"
+  reports_dir: "test_results/reports"
+
+# Resource configuration (reduced for testing)
+resources:
+  threads: 2
+  memory: "4G"
+  parallel_jobs: 1
+
+# Quality control parameters
+quality_control:
+  min_read_length: 50
+  min_quality_score: 10
+  min_codon_count: 2
+  max_ambiguous_bases: 0.2
