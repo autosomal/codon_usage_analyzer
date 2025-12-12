@@ -1,100 +1,57 @@
-# Python bytecode
+```
+# Compiled and build artifacts
+*.pyc
 __pycache__/
-*.py[cod]
-*$py.class
+*.o
+*.obj
+*.out
+dist/
+build/
+target/
 
-# Conda environment
-env/
+# Dependencies
+.venv/
 venv/
-*.conda
-*.conda-lock.yml
-.conda/
+node_modules/
+.julia/
+.zig-cache/
+.gradle/
 
-# Snakemake
-.snakemake/
-*.snakemake-*
-
-# Logs and temporary files
-logs/
-tmp/
-test_logs/
-test_tmp/
+# Logs and temp files
 *.log
 *.tmp
 *.swp
+*.swo
+*.bak
 
-# Output directories
-results/
-test_results/
-figures/
+# Environment
+.env
+.env.local
+*.env.*
 
-# Data files
-data/
-test_data/
-*.fast5
-*.fastq
-*.fastq.gz
-*.bam
-*.bai
-*.sam
-*.vcf
-*.vcf.gz
-*.fasta
-*.fa
-*.fastq
-*.fq
-*.gb
-*.gbk
-
-# Models and large files
-models/
-test_models/
-*.h5
-*.dump
-*.pkl
-*.pt
-*.pb
-
-# IDE files
-.idea/
+# Editors
 .vscode/
-*.sublime-*
+.idea/
+*.swp
+*.swo
 
-# OS files
-.DS_Store
-Thumbs.db
-
-# Coverage reports
-htmlcov/
-.coverage
-.coverage.*
-coverage.xml
-*.cover
-
-# Build files
-dist/
-build/
+# Python specific
+*.pyc
+__pycache__/
+*.pyo
+*.pyd
+.Python
+*.so
 *.egg-info/
-*.egg
+.eggs/
+.coverage
+htmlcov/
+.mypy_cache/
+.pytest_cache/
+.tox/
 
-# Documentation
-docs/_build/
-_site/
-
-# Jupyter notebooks
-.ipynb_checkpoints/
-*.ipynb
-
-# R
+# R specific
 .Rhistory
 .RData
 .Rproj.user/
-
-# Other
-*.pyc
-*.so
-*.dylib
-*.dll
-*.bak
-*.old
-*.~
+```

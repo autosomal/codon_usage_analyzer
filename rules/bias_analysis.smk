@@ -54,7 +54,7 @@ rule correlation_analysis:
     """Analyze correlation between codon usage and gene expression"""
     input:
         codon_table = os.path.join(config["output"]["tables_dir"], "codon_usage_table.tsv"),
-        expression_data = config["input"].get("expression_data", "")
+        expression_data = lambda wildcards: config["input"].get("expression_data", "data/expression_data.tsv") if config["input"].get("expression_data") else "data/expression_data.tsv"
     output:
         correlation_table = os.path.join(config["output"]["tables_dir"], "codon_expression_correlation.tsv")
     params:
@@ -74,9 +74,9 @@ rule cross_species_comparison:
     """Compare codon usage across multiple species"""
     input:
         # This would typically take multiple codon usage tables
-        # For now, we'll use a placeholder
-        codon_tables = expand(os.path.join(config["output"]["tables_dir"], "{species}_codon_usage.tsv"),
-                            species=config["analysis"].get("comparison_species", []))
+        # For now, we'll use a placeholder - in a real workflow this would be expand() with species
+        codon_tables = lambda wildcards: expand(os.path.join(config["output"]["tables_dir"], "{species}_codon_usage.tsv"),
+                            species=config["analysis"].get("comparison_species", [])) if config["analysis"].get("comparison_species") else [os.path.join(config["output"]["tables_dir"], "codon_usage_table.tsv")]
     output:
         comparison_table = os.path.join(config["output"]["tables_dir"], "cross_species_comparison.tsv"),
         distance_matrix = os.path.join(config["output"]["tables_dir"], "codon_usage_distance.tsv")

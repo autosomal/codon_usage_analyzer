@@ -60,17 +60,22 @@ rule generate_final_report:
     input:
         summary_report = os.path.join(config["output"]["reports_dir"], "summary_report.tsv"),
         summary_stats = os.path.join(config["output"]["reports_dir"], "summary_statistics.txt"),
+        codon_table = os.path.join(config["output"]["tables_dir"], "codon_usage_table.tsv"),
+        cai_table = os.path.join(config["output"]["tables_dir"], "cai_values.tsv"),
+        enc_table = os.path.join(config["output"]["tables_dir"], "enc_values.tsv"),
+        rscu_table = os.path.join(config["output"]["tables_dir"], "rscu_values.tsv"),
+        tai_table = os.path.join(config["output"]["tables_dir"], "tai_values.tsv") if config["analysis"]["calculate_tai"] else os.path.join(config["output"]["tables_dir"], "cai_values.tsv"),  # fallback
         plots = expand(os.path.join(config["output"]["plots_dir"], "*.pdf"), glob=True),
         tables = expand(os.path.join(config["output"]["tables_dir"], "*.tsv"), glob=True),
         multiqc_report = os.path.join(config["output"]["reports_dir"], "multiqc", "multiqc_report.html")
     output:
         final_report = os.path.join(config["output"]["reports_dir"], "final_report.html")
     params:
-        config = config,
-        timestamp = config["timestamp"]
+        config_file = "config.yaml",
+        output_dir = config["output"]["tables_dir"]
     log:
         os.path.join(config["output"]["base_dir"], "logs", "generate_final_report.log")
     conda:
         "../envs/base.yaml"
     script:
-        "../scripts/generate_html_report.py"
+        "../scripts/generate_comprehensive_report.py"

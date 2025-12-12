@@ -76,10 +76,27 @@ rule all:
         os.path.join(config["output"]["tables_dir"], "enc_values.tsv"),
         os.path.join(config["output"]["tables_dir"], "preferred_codons.tsv"),
         
+        # Advanced analysis output files
+        os.path.join(config["output"]["tables_dir"], "tai_values.tsv") if config["analysis"]["calculate_tai"] else None,
+        os.path.join(config["output"]["tables_dir"], "cbi_values.tsv") if config["analysis"]["calculate_cbi"] else None,
+        os.path.join(config["output"]["tables_dir"], "fop_values.tsv") if config["analysis"]["calculate_fop"] else None,
+        os.path.join(config["output"]["tables_dir"], "codon_pair_usage.tsv") if config["analysis"]["codon_pair_analysis"] else None,
+        os.path.join(config["output"]["tables_dir"], "codon_expression_correlation.tsv") if config["analysis"]["correlation_analysis"] else None,
+        os.path.join(config["output"]["tables_dir"], "cross_species_comparison.tsv") if config["analysis"].get("comparison_species") else None,
+        
         # Visualization outputs
         os.path.join(config["output"]["plots_dir"], "codon_usage_heatmap.pdf"),
         os.path.join(config["output"]["plots_dir"], "rscu_correlation.pdf"),
         os.path.join(config["output"]["plots_dir"], "cai_distribution.pdf"),
+        os.path.join(config["output"]["plots_dir"], "neutrality_plot.pdf"),
+        os.path.join(config["output"]["plots_dir"], "pr2_plot.pdf"),
+        os.path.join(config["output"]["plots_dir"], "codon_usage_effectiveness.pdf"),
+        
+        # Advanced visualization outputs
+        os.path.join(config["output"]["plots_dir"], "tai_distribution.pdf") if config["analysis"]["calculate_tai"] else None,
+        os.path.join(config["output"]["plots_dir"], "cbi_distribution.pdf") if config["analysis"]["calculate_cbi"] else None,
+        os.path.join(config["output"]["plots_dir"], "fop_distribution.pdf") if config["analysis"]["calculate_fop"] else None,
+        os.path.join(config["output"]["plots_dir"], "bias_metrics_correlation.pdf") if config["analysis"]["calculate_tai"] or config["analysis"]["calculate_cbi"] or config["analysis"]["calculate_fop"] else None,
         
         # Final report
         os.path.join(config["output"]["reports_dir"], "final_report.html")
